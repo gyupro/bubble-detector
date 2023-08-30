@@ -11,6 +11,13 @@ The main loop iterates through each row of pixels, slicing the webtoon into pane
 2. Check for Empty Rows
 A row is considered 'empty' if it meets certain intensity criteria (e.g., almost black or almost white pixels). This can be adjusted.
 
+# Example
+
+Original image is located at [Here](sample/image/prologue.jpg)
+
+![Alt Text](output.gif)
+
+
 # Bubble detection
 
 ## TODO List
