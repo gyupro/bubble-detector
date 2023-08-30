@@ -23,5 +23,8 @@ Original image is located at [Here](sample/image/prologue.jpg)
 ## TODO List
 
 - [x] Panel Slicing
-- [ ] Add Conversation Bubble Detection
+- [ ] Add Conversation Bubble Detection feature
+- [ ] Add OCR feature
+- [ ] Add Translation feature
 - [ ] Add user-friendly CLI or GUI
+
