@@ -1,0 +1,1 @@
+MIN_PANEL_HEIGHT = 4
