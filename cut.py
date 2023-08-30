@@ -5,43 +5,62 @@ from IPython.display import display
 
 from glob import glob
 
-def detect_cut(image_path):
-    # Read image
-    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)  # Read in grayscale
+def is_blank_section(image_slice):
+    """
+    Checks if a given image slice is blank (either all white or all black).
     
-    # Initializations
-    height, width = image.shape
-    start_row = 0
-    panel_number = 0
-    panels = []
-    # Function to check if a slice is empty (all 255s or all 0s)
-    def is_empty_slice(slice):
-        return np.all(slice == 255) or np.all(slice == 0)
+    Parameters:
+        image_slice: numpy array containing grayscale image data
+
+    Returns:
+        bool: True if slice is blank, False otherwise
+    """
+    return np.all(image_slice == 255) or np.all(image_slice == 0)
+
+
+def slice_webtoon_into_panels(image_path):
+    """
+    Detects and slices a webtoon into individual panels based on blank sections.
+
+    Parameters:
+        image_path: str, path to the webtoon image
+
+    Returns:
+        list: A list of sliced panels (as numpy arrays)
+    """
+    # Read image in grayscale
+    grayscale_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     
-    # Iterate through rows
-    for i in range(1, height):  # Start at 1 to avoid slicing from 0 to 0
-        row = image[i, :]
+    # Get image dimensions
+    image_height, image_width = grayscale_image.shape
     
-        # Check if all values are 255 or 0
-        if np.all(row == 255) or np.all(row == 0):
-            
-            # Slice the panel from start_row to i
-            panel = image[start_row:i, :]
-            
-            # If the slice is not empty, save/display it
-            if not is_empty_slice(panel):
-                # display(Image.fromarray(panel))  # This is for Jupyter Notebook; replace with save function if needed
-                panels.append(panel)
-                panel_number += 1
+    # Initialize variables
+    current_row = 0
+    panel_count = 0
+    sliced_panels = []
     
-            # Update start_row to the next row
-            start_row = i + 1
-    
-    # Don't forget the last panel
-    panel = image[start_row:, :]
-    if not is_empty_slice(panel):
-        # display(Image.fromarray(panel))  # This is for Jupyter Notebook; replace with save function if needed
-        panels.append(panel)
+    # Iterate through rows to find blank sections
+    for i in range(1, image_height):
+        row_pixels = grayscale_image[i, :]
         
+        if is_blank_section(row_pixels):
+            candidate_panel = grayscale_image[current_row:i, :]
+            
+            if not is_blank_section(candidate_panel):
+                sliced_panels.append(candidate_panel)
+                panel_count += 1
 
+            # Move to the next row after the blank section
+            current_row = i + 1
+            
+    # Handle the last panel
+    last_panel = grayscale_image[current_row:, :]
+    if not is_blank_section(last_panel):
+        sliced_panels.append(last_panel)
+    
+    return sliced_panels
 
+# Example usage:
+# panels = slice_webtoon_into_panels("path/to/your/image.jpg")
+# for panel in panels:
+#     display(Image.fromarray(panel))
