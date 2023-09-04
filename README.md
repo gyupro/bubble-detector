@@ -1,5 +1,5 @@
 # bubble-detector
-This is a bubble detector from a webtoon
+This is a bubble detector from a webtoon.
 
 This is a Python utility designed to slice a vertically-scrolling webtoon into its constituent panels and  also detects conversation bubbles within each panel. The tool uses OpenCV for image processing and relies on grayscale conversion for efficient slicing and uses yolov8 to detect bubbles
 
