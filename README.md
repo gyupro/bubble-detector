@@ -21,7 +21,7 @@ Original image is located at [Here](sample/image/prologue.jpg)
 
 Automatically generates bubbles and paste them onto random sliced images and keep annotations
 
-![image](https://github.com/gyupro/bubble-detector/assets/79894531/7857d8a1-f6ab-4c85-aeb3-8e57cd6db3f3)
+![image](https://github.com/gyupro/bubble-detector/assets/79894531/a85fff43-f3ab-47a6-a660-4b8d7805fbea)
 
 
 # Bubble detection
