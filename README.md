@@ -17,12 +17,19 @@ Original image is located at [Here](sample/image/prologue.jpg)
 
 ![Alt Text](output.gif)
 
+# Bubble Generation
+
+Automatically generates bubbles and paste them onto random sliced images and keep annotations
+
+![image](https://github.com/gyupro/bubble-detector/assets/79894531/7857d8a1-f6ab-4c85-aeb3-8e57cd6db3f3)
+
 
 # Bubble detection
 
 ## TODO List
 
 - [x] Panel Slicing
+- [x] Dataset Creation
 - [ ] Add Conversation Bubble Detection feature
 - [ ] Add OCR feature
 - [ ] Add Translation feature
